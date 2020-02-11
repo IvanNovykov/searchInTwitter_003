@@ -1,0 +1,23 @@
+<html>
+<head>
+    <link href="static\style.css" type="text/css" rel="stylesheet"/>
+    <title>My page</title>
+</head>
+<body>
+<form method="post">
+    <input type="text" name="queryText" placeholder="Enter #search text"></input>
+    <button type="submit">Search</button>
+</form>
+<form>
+    <a href="src\main\resources\templates\testPage.html">Go to testPage</a>
+</form>
+<div>Result of search:</div>
+{{#tweets}}
+<div>
+    <b>{{id}}</b>
+    <span>{{name}}</span>
+    <i>{{text}}</i>
+</div>
+{{/tweets}}
+</body>
+</html>
