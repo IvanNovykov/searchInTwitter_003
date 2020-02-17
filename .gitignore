@@ -3,5 +3,3 @@
 target
 searchInTwitter_003.iml
 
-src/main/java/ua/com/novykov/model/Tweets.java
-src/main/java/ua/com/novykov/service/TweetService.java
