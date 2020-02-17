@@ -13,19 +13,17 @@ import ua.com.novykov.model.Tweets;
 import ua.com.novykov.repos.TweetRepository;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class TweetService {
     private final TwitterConfiguration tweetConfiguration;
+    private final Twitter twitter;
     private final TweetRepository tweetRepository;
 
     public List<Tweets> searchTweets(@RequestParam(name = "queryText", value = "Java") String queryText) throws TwitterException {
         List<Tweets> tweets = new ArrayList<>();
-        Twitter twitter = tweetConfiguration.getConnection();
         twitter4j.Query query = new twitter4j.Query(queryText);
         query.setCount(100);
         QueryResult queryResult = twitter.search(query);
@@ -46,7 +44,7 @@ public class TweetService {
         return tweetDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
-//    @Scheduled(cron = "3 * * * * *")
+//    @Scheduled(cron = "0 0/03 * * * ?")
     public void saveTweets() throws TwitterException {
         tweetRepository.saveAll(searchTweets("Java"));
     }
