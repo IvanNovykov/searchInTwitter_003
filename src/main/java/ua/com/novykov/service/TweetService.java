@@ -20,12 +20,12 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TweetService {
-    private final TwitterConfiguration tweetConfiguration;
+    private final Twitter twitter;
     private final TweetRepository tweetRepository;
 
-    public List<Tweets> searchTweets(@RequestParam(name = "queryText", value = "Java") String queryText) throws TwitterException {
+    public List<Tweets> searchTweets(String queryText) throws TwitterException {
         List<Tweets> tweets = new ArrayList<>();
-        Twitter twitter = tweetConfiguration.getConnection();
+//        Twitter twitter = tweetConfiguration.getConnection();
         twitter4j.Query query = new twitter4j.Query(queryText);
         query.setCount(100);
         QueryResult queryResult = twitter.search(query);

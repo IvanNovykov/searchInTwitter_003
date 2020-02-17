@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity(name = "tweets")
 @Data
+@Builder
 public class Tweets {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
