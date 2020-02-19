@@ -1,10 +1,8 @@
 package ua.com.novykov.configs;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import twitter4j.Twitter;
@@ -14,17 +12,14 @@ import twitter4j.conf.ConfigurationBuilder;
 @Configuration
 @Setter
 @Getter
-@ConfigurationProperties(prefix ="twitter4j.oauth")
-@RequiredArgsConstructor
 public class TwitterConfiguration {
-
-//    @Value("${api-key}")
+    @Value("${twitter4j.oauth.api-key}")
     private String apiKey;
-//    @Value("${api-secret-key}")
+    @Value("${twitter4j.oauth.api-secret-key}")
     private String apiSecretKey;
-//    @Value("${access-token}")
+    @Value("${twitter4j.oauth.access-token}")
     private String accessToken;
-//    @Value("${access-token-secret}")
+    @Value("${twitter4j.oauth.access-token-secret}")
     private String accessTokenSecret;
 
     @Bean

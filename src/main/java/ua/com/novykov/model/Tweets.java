@@ -8,16 +8,11 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity(name = "tweets")
-<<<<<<< HEAD
-@Data
-@Builder
-=======
 @Setter
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
->>>>>>> b67360e8e4c789930caba2c531cbf51d29caecfd
 public class Tweets {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
