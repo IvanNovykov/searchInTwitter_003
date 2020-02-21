@@ -3,6 +3,7 @@ package ua.com.novykov.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -19,7 +20,7 @@ public class TweetService {
     private final Twitter twitter;
     private final TweetRepository tweetRepository;
 
-    public List<Tweets> searchTweets(String queryText) throws TwitterException {
+    public List<Tweets> searchTweets(@RequestParam(name = "queryText", required = false)String queryText) throws TwitterException {
         List<Tweets> tweets = new ArrayList<>();
         twitter4j.Query query = new twitter4j.Query(queryText);
         query.setCount(100);
@@ -44,10 +45,5 @@ public class TweetService {
     @Scheduled(cron = "0 0/01 * * * ?")
     public void saveTweets() throws TwitterException {
         tweetRepository.saveAll(searchTweets("Java"));
-    }
-
-    public List<Tweets> getAllTweets() {
-        List<Tweets> tweetsList = tweetRepository.findAll();
-        return tweetsList;
     }
 }
